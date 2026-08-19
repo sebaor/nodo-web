@@ -1,0 +1,43 @@
+---
+/**
+ * Bloque de cierre con las dos acciones del sitio: agendar o WhatsApp.
+ * Fondo rojo de bloque, como los avisos grandes de la referencia.
+ */
+import { waLink } from "../data/site";
+import Boton from "./Boton.astro";
+
+interface Props {
+  titulo: string;
+  bajada?: string;
+}
+const { titulo, bajada } = Astro.props;
+---
+
+<section class="mx-auto max-w-6xl px-5 pb-16 md:pb-24">
+  <div class="reveal relative overflow-hidden rounded-3xl bg-block px-6 py-12 text-center text-block-contrast md:py-16">
+    <div
+      class="pointer-events-none absolute inset-0 opacity-20"
+      style="background-image: radial-gradient(#ffffff 1.5px, transparent 1.5px); background-size: 24px 24px;"
+      aria-hidden="true"
+    >
+    </div>
+    <div class="relative">
+      <h2 class="mx-auto max-w-lg text-3xl md:text-4xl">{titulo}</h2>
+      {bajada && <p class="mx-auto mt-3 max-w-md text-block-contrast/85">{bajada}</p>}
+      <div class="mt-7 flex flex-wrap justify-center gap-3">
+        {/* Boton ya aplica la base del sitio a las rutas internas */}
+        <Boton href="/#agenda" class="bg-white! text-ink!">
+          Agendá una reunión
+        </Boton>
+        <Boton
+          href={waLink}
+          externo
+          variante="outline"
+          class="border-white/40! text-white! hover:border-white!"
+        >
+          Escribinos por WhatsApp
+        </Boton>
+      </div>
+    </div>
+  </div>
+</section>

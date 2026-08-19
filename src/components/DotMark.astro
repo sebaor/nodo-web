@@ -1,0 +1,30 @@
+---
+/**
+ * La marca gráfica de NODO en escala chica: grilla de puntos 4×2.
+ * Negro lo normal, rojo lo que importa. Los puntos normales usan
+ * currentColor para adaptarse al modo claro/oscuro.
+ */
+interface Props {
+  class?: string;
+}
+const { class: className = "" } = Astro.props;
+---
+
+<svg
+  class={className}
+  width="38"
+  height="18"
+  viewBox="0 0 38 18"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  aria-hidden="true"
+>
+  <circle cx="4" cy="4" r="4" fill="currentColor"></circle>
+  <circle cx="14" cy="4" r="4" fill="currentColor"></circle>
+  <circle cx="24" cy="4" r="4" fill="currentColor"></circle>
+  <circle cx="34" cy="4" r="4" fill="currentColor"></circle>
+  <circle cx="4" cy="14" r="4" fill="currentColor"></circle>
+  <circle cx="14" cy="14" r="4" fill="currentColor"></circle>
+  <circle cx="24" cy="14" r="4" fill="currentColor"></circle>
+  <circle cx="34" cy="14" r="4" class="fill-rojo"></circle>
+</svg>

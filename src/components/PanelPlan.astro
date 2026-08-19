@@ -1,0 +1,128 @@
+---
+/**
+ * Los tres paneles de la página de servicios, uno por plan. Muestran la
+ * diferencia real entre planes sin un párrafo de texto:
+ *  - standard: la foto, un panel simple
+ *  - pro: la película, comparación entre meses
+ *  - full: el copiloto, alertas y rentabilidad por canal
+ */
+import { leyendaFicticia } from "../data/site";
+
+interface Props {
+  tipo: "standard" | "pro" | "full";
+}
+const { tipo } = Astro.props;
+
+const mesesPro = [
+  { mes: "Mar", antes: 38, ahora: 46 },
+  { mes: "Abr", antes: 52, ahora: 44 },
+  { mes: "May", antes: 46, ahora: 72, hot: true },
+  { mes: "Jun", antes: 60, ahora: 88 },
+];
+
+const canales = [
+  { canal: "Local", ancho: 62 },
+  { canal: "Web", ancho: 90, hot: true },
+  { canal: "Revendedores", ancho: 38 },
+];
+---
+
+<div class="panel panel-anim">
+  <div class="mb-3 flex items-center justify-between gap-2">
+    <span class="panel-muted">
+      {tipo === "standard" && "Tu negocio hasta hoy"}
+      {tipo === "pro" && "Junio comparado con mayo"}
+      {tipo === "full" && "Seguimiento del mes"}
+    </span>
+    <span class="pill pill-ficticio">{leyendaFicticia}</span>
+  </div>
+
+  {
+    tipo === "standard" && (
+      <div class="grid grid-cols-5 gap-2">
+        <div class="panel-card col-span-3">
+          <p class="panel-muted">Ventas por producto</p>
+          <div class="bars mt-3" aria-hidden="true">
+            <div class="bar" style="height:55%" />
+            <div class="bar bar--hot" style="height:92%" />
+            <div class="bar" style="height:40%" />
+            <div class="bar" style="height:66%" />
+            <div class="bar bar--soft" style="height:24%" />
+          </div>
+        </div>
+        <div class="panel-card col-span-2 flex flex-col justify-between">
+          <p class="panel-muted">Ventas del semestre</p>
+          <p class="panel-num text-lg leading-tight">
+            <span class="js-contador" data-valor="1842300" data-prefijo="$ ">$ 1.842.300</span>
+          </p>
+          <p class="panel-muted">
+            <span class="js-contador" data-valor="312">312</span> pedidos
+          </p>
+        </div>
+      </div>
+    )
+  }
+
+  {
+    tipo === "pro" && (
+      <div class="grid grid-cols-5 gap-2">
+        <div class="panel-card col-span-3">
+          <p class="panel-muted">Mes a mes, por rubro</p>
+          <div class="bars mt-3 gap-[4%]!" aria-hidden="true">
+            {mesesPro.map((m) => (
+              <>
+                <div class="bar bar--soft" style={`height:${m.antes}%`} />
+                <div class={`bar ${m.hot ? "bar--hot" : ""}`} style={`height:${m.ahora}%`} />
+              </>
+            ))}
+          </div>
+          <div class="mt-1.5 flex gap-[4%]" aria-hidden="true">
+            {mesesPro.map((m) => (
+              <span class="panel-muted flex-[2] text-center text-[0.55rem]">{m.mes}</span>
+            ))}
+          </div>
+        </div>
+        <div class="panel-card panel-card--dark col-span-2 flex flex-col justify-between">
+          <p class="panel-muted">Este mes</p>
+          <p class="panel-num text-lg leading-tight">
+            <span class="js-contador" data-valor="384100" data-prefijo="$ ">$ 384.100</span>
+          </p>
+          <p class="panel-muted">contra $ 341.500 en mayo</p>
+        </div>
+      </div>
+    )
+  }
+
+  {
+    tipo === "full" && (
+      <div class="flex flex-col gap-2">
+        <div class="panel-alerta panel-card panel-card--rojo flex items-center justify-between gap-2">
+          <div>
+            <p class="text-[0.7rem] font-medium uppercase tracking-wide">Alerta</p>
+            <p class="text-[0.75rem]">Stock bajo en el producto más vendido</p>
+          </div>
+          <span class="pill bg-white/15 text-white">hoy 09:14</span>
+        </div>
+        <div class="panel-card">
+          <div class="flex items-center justify-between gap-2">
+            <p class="panel-muted">Rentabilidad por canal de venta</p>
+            <span class="panel-muted text-[0.6rem]">actualizado solo</span>
+          </div>
+          <div class="mt-2.5 flex flex-col gap-1.5" aria-hidden="true">
+            {canales.map((c, i) => (
+              <div class="flex items-center gap-2">
+                <span class="panel-muted w-20 shrink-0 text-[0.6rem]">{c.canal}</span>
+                <div class="h-2.5 flex-1 rounded-full bg-white">
+                  <div
+                    class={`canal h-full rounded-full ${c.hot ? "bg-rojo" : "bg-ink"}`}
+                    style={`width:${c.ancho}%; transition-delay:${i * 130}ms`}
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    )
+  }
+</div>

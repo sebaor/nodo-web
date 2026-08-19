@@ -1,0 +1,63 @@
+---
+import DotMark from "./DotMark.astro";
+import { site, waLink, mailtoLink } from "../data/site";
+import { ruta } from "../lib/rutas";
+
+const nav = [
+  { href: "/", label: "Inicio" },
+  { href: "/servicios", label: "Servicios y planes" },
+  { href: "/formulario", label: "Formulario de inicio" },
+  { href: "/seguridad", label: "Seguridad y confidencialidad" },
+  { href: "/contacto", label: "Contacto" },
+];
+---
+
+<footer class="border-t border-line">
+  <div class="mx-auto grid max-w-6xl gap-10 px-5 py-12 md:grid-cols-3">
+    <div class="flex flex-col items-start gap-3">
+      <a href={ruta("/")} class="flex items-center gap-2.5" aria-label="NODO, ir al inicio">
+        <DotMark class="text-body" />
+        <span class="text-lg font-medium tracking-wide">NODO</span>
+      </a>
+      <p class="text-sm text-muted">
+        Análisis de datos para pymes y emprendimientos de Uruguay.
+      </p>
+    </div>
+
+    <nav class="flex flex-col items-start gap-2" aria-label="Navegación del pie">
+      {
+        nav.map((item) => (
+          <a href={ruta(item.href)} class="text-sm transition-colors hover:text-accent">
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="flex flex-col items-start gap-2 text-sm">
+      <a href={waLink} target="_blank" rel="noopener" class="transition-colors hover:text-accent">
+        WhatsApp
+      </a>
+      {/* El texto visible es la dirección: si el enlace no abre el
+          programa de correo, igual se puede leer y copiar. */}
+      <a href={mailtoLink} class="transition-colors hover:text-accent">
+        {site.correo.direccion}
+      </a>
+      {
+        site.redes.instagram && (
+          <a href={site.redes.instagram} target="_blank" rel="noopener" class="transition-colors hover:text-accent">
+            Instagram
+          </a>
+        )
+      }
+      {
+        site.redes.linkedin && (
+          <a href={site.redes.linkedin} target="_blank" rel="noopener" class="transition-colors hover:text-accent">
+            LinkedIn
+          </a>
+        )
+      }
+      <p class="mt-3 text-muted">{site.nombre} · {site.ubicacion}</p>
+    </div>
+  </div>
+</footer>

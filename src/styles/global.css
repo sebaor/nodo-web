@@ -1,0 +1,569 @@
+@import "tailwindcss";
+
+/* Space Grotesk local (woff2), pesos 400 y 500 únicamente */
+@import "@fontsource/space-grotesk/400.css";
+@import "@fontsource/space-grotesk/500.css";
+
+/* ------------------------------------------------------------------ */
+/* Paleta de marca — nunca hardcodear un hex fuera de este archivo     */
+/* ------------------------------------------------------------------ */
+@theme {
+  --color-ink: #1f2124;
+  --color-rojo: #c92c2e;
+  --color-coral: #ff9d73;
+  --color-gris: #979797;
+  --color-hueso: #f5f3f0;
+
+  --font-sans: "Space Grotesk", ui-sans-serif, system-ui, -apple-system, sans-serif;
+}
+
+/* ------------------------------------------------------------------ */
+/* Territorio de color por modo. Claro es el modo por defecto.         */
+/* Acento de texto: rojo en claro (5,3:1), coral en oscuro (8:1).      */
+/* El rojo nunca va en texto sobre fondo oscuro; el coral nunca va     */
+/* en texto sobre fondo claro (contraste 2:1, ilegible).               */
+/* ------------------------------------------------------------------ */
+:root {
+  --bg: #faf8f5;
+  --bg-raised: #ffffff;
+  --fg: #1f2124;
+  --fg-muted: #63656a;
+  --accent: #c92c2e;
+  --accent-contrast: #ffffff;
+  --block: #c92c2e; /* solo fondos de bloque y elementos grandes */
+  --block-contrast: #ffffff;
+  --line: rgb(31 33 36 / 0.15);
+  color-scheme: light;
+}
+
+[data-theme="dark"] {
+  --bg: #1f2124;
+  --bg-raised: #26282c;
+  --fg: #f5f3f0;
+  --fg-muted: #a6a6a4;
+  --accent: #ff9d73;
+  --accent-contrast: #1f2124;
+  --block: #c92c2e;
+  --block-contrast: #ffffff;
+  --line: rgb(245 243 240 / 0.15);
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-base: var(--bg);
+  --color-raised: var(--bg-raised);
+  --color-body: var(--fg);
+  --color-muted: var(--fg-muted);
+  --color-accent: var(--accent);
+  --color-accent-contrast: var(--accent-contrast);
+  --color-block: var(--block);
+  --color-block-contrast: var(--block-contrast);
+  --color-line: var(--line);
+}
+
+/* ------------------------------------------------------------------ */
+/* Base                                                                */
+/* ------------------------------------------------------------------ */
+html {
+  font-family: var(--font-sans);
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--fg);
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+  -webkit-font-smoothing: antialiased;
+}
+
+strong,
+b,
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 500; /* nunca bold 700 */
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--accent-contrast);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+/* ------------------------------------------------------------------ */
+/* Componentes                                                         */
+/* ------------------------------------------------------------------ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 9999px;
+  padding: 0.85rem 1.5rem;
+  font-weight: 500;
+  line-height: 1.1;
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn-solid {
+  background: var(--accent);
+  color: var(--accent-contrast);
+}
+
+.btn-outline {
+  border: 1px solid var(--line);
+  color: var(--fg);
+}
+
+.btn-outline:hover {
+  border-color: var(--accent);
+}
+
+.btn .flecha {
+  transition: transform 0.2s ease;
+}
+
+.btn:hover .flecha {
+  transform: translate(2px, -2px);
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  border-radius: 9999px;
+  padding: 0.3rem 0.8rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+/* ------------------------------------------------------------------ */
+/* Paneles simulados: siempre claros, no cambian con el modo del sitio */
+/* Acá el rojo sí funciona para barras, avisos y puntos destacados.    */
+/* ------------------------------------------------------------------ */
+.panel {
+  background: #ffffff;
+  color: var(--color-ink);
+  border-radius: 0.9rem;
+  padding: clamp(0.8rem, 2.5vw, 1.25rem);
+  font-size: 0.8rem;
+  line-height: 1.35;
+}
+
+.panel-card {
+  background: #f0efec;
+  border-radius: 0.7rem;
+  padding: 0.8rem 0.9rem;
+}
+
+.panel-card--dark {
+  background: var(--color-ink);
+  color: #ffffff;
+}
+
+.panel-card--rojo {
+  background: var(--color-rojo);
+  color: #ffffff;
+}
+
+.panel-num {
+  font-variant-numeric: tabular-nums;
+  font-weight: 500;
+}
+
+.panel-muted {
+  color: #6b6d71;
+  font-size: 0.7rem;
+}
+
+.panel-card--dark .panel-muted,
+.panel-card--rojo .panel-muted {
+  color: rgb(255 255 255 / 0.75);
+}
+
+.pill-ficticio {
+  background: var(--color-ink);
+  color: #ffffff;
+  font-size: 0.65rem;
+  padding: 0.25rem 0.65rem;
+}
+
+/* Barras de los paneles */
+.bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 7%;
+  height: 5.25rem;
+}
+
+.bar {
+  flex: 1;
+  background: var(--color-ink);
+  border-radius: 2px 2px 0 0;
+  min-width: 0;
+}
+
+.bar--hot {
+  background: var(--color-rojo);
+}
+
+.bar--soft {
+  background: #c9c8c5;
+}
+
+/* Grilla de puntos dentro de paneles: negro lo normal, rojo lo que importa */
+.dots {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.dot {
+  aspect-ratio: 1;
+  border-radius: 9999px;
+  background: var(--color-ink);
+}
+
+.dot--hot {
+  background: var(--color-rojo);
+}
+
+/* ------------------------------------------------------------------ */
+/* Laptop dibujada con CSS, sin imágenes: estética MacBook Air.        */
+/* Aluminio plateado, bisel negro con muesca, teclado oscuro.          */
+/* ------------------------------------------------------------------ */
+.laptop {
+  width: 100%;
+  filter: drop-shadow(0 22px 34px rgb(0 0 0 / 0.3));
+}
+
+/* Pantalla: marco de aluminio fino, bisel negro adentro */
+.laptop-screen {
+  position: relative;
+  background: #101113;
+  border: 3px solid #c9ccd1;
+  border-bottom: none;
+  border-radius: 1.05rem 1.05rem 0 0;
+  padding: 0.55rem 0.55rem 0.7rem;
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.06);
+}
+
+.laptop-display {
+  position: relative;
+  border-radius: 0.55rem;
+  overflow: hidden;
+}
+
+.laptop-notch {
+  position: absolute;
+  top: 0.55rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 18%;
+  height: 0.68rem;
+  background: #101113;
+  border-radius: 0 0 0.5rem 0.5rem;
+  z-index: 5;
+}
+
+.laptop-notch::after {
+  /* la cámara */
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 42%;
+  transform: translate(-50%, -50%);
+  width: 0.2rem;
+  height: 0.2rem;
+  border-radius: 9999px;
+  background: #2f3237;
+}
+
+/* Cuerpo de aluminio con teclado y trackpad */
+.laptop-deck {
+  position: relative;
+  margin: 0 -4.5%;
+  padding: 0.4rem 4.5% 0.5rem;
+  background: linear-gradient(#f2f3f5, #d3d6da 18%, #b9bcc1 85%, #90939a);
+  border-radius: 0.25rem 0.25rem 0.95rem 0.95rem;
+}
+
+/* la hendidura para abrir la tapa */
+.laptop-deck::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 13%;
+  height: 0.32rem;
+  background: linear-gradient(#a9acb2, #c9ccd1);
+  border-radius: 0 0 0.6rem 0.6rem;
+}
+
+.laptop-keyboard {
+  height: clamp(1.9rem, 5vw, 2.7rem);
+  border-radius: 0.3rem;
+  /* pocillo del teclado con filas y columnas de teclas oscuras */
+  background-color: #babdc2;
+  background-image:
+    repeating-linear-gradient(to bottom, transparent 0 18%, #babdc2 18% 25%),
+    repeating-linear-gradient(to right, #2b2d31 0 6.4%, #babdc2 6.4% 7.7%);
+  box-shadow: inset 0 1px 2px rgb(0 0 0 / 0.18);
+}
+
+.laptop-trackpad {
+  width: 30%;
+  height: clamp(0.8rem, 2.1vw, 1.1rem);
+  margin: 0.4rem auto 0;
+  border-radius: 0.25rem;
+  background: linear-gradient(#cdd0d4, #bec1c6);
+  box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.1);
+}
+
+/* ------------------------------------------------------------------ */
+/* Formularios                                                         */
+/* ------------------------------------------------------------------ */
+input[type="radio"],
+input[type="checkbox"] {
+  accent-color: var(--accent);
+  width: 1.05rem;
+  height: 1.05rem;
+  flex-shrink: 0;
+}
+
+.opcion {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  border: 1px solid var(--line);
+  border-radius: 0.75rem;
+  padding: 0.65rem 0.9rem;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.opcion:hover {
+  border-color: var(--accent);
+}
+
+.opcion:has(input:checked) {
+  border-color: var(--accent);
+  background: color-mix(in oklab, var(--accent) 7%, transparent);
+}
+
+.error-campo {
+  color: var(--accent);
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+/* Campo trampa anti-spam: invisible para personas, presente para bots */
+.trampa {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* ------------------------------------------------------------------ */
+/* Campo de puntos decorativo de fondo                                 */
+/* ------------------------------------------------------------------ */
+.campo-puntos {
+  position: absolute;
+  inset: -70px;
+  pointer-events: none;
+  background-image: radial-gradient(var(--line) 1.5px, transparent 1.5px);
+  background-size: 26px 26px;
+  mask-image: radial-gradient(ellipse 90% 70% at 50% 20%, black 0%, transparent 70%);
+}
+
+/* Deriva ambiente, bien sutil: el campo respira aunque no scrollees. */
+@media (prefers-reduced-motion: no-preference) {
+  .campo-deriva {
+    animation: campo-deriva 26s ease-in-out infinite alternate;
+  }
+}
+
+@keyframes campo-deriva {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(26px, 18px, 0);
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Tarjetas interactivas: levitan y acentúan el borde al pasar el mouse */
+/* ------------------------------------------------------------------ */
+.card-i {
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.35s ease;
+}
+
+.card-i .flecha,
+.enlace-flecha .flecha {
+  transition: transform 0.2s ease;
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .card-i:hover {
+    transform: translateY(-6px);
+    border-color: var(--accent);
+  }
+
+  .card-i:hover .flecha,
+  .enlace-flecha:hover .flecha {
+    transform: translate(2px, -2px);
+  }
+}
+
+/* Grilla de puntos decorativa en la esquina de las tarjetas de plan */
+.plan-puntos {
+  position: absolute;
+  right: -12px;
+  top: -12px;
+  width: 130px;
+  height: 110px;
+  pointer-events: none;
+  background-image: radial-gradient(var(--line) 2px, transparent 2px);
+  background-size: 15px 15px;
+  mask-image: radial-gradient(ellipse at top right, black 0%, transparent 72%);
+}
+
+/* ------------------------------------------------------------------ */
+/* La grilla de puntos en escala media: "Quiénes somos"                */
+/* ------------------------------------------------------------------ */
+.qs-grafica {
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  gap: clamp(0.55rem, 2vw, 1rem);
+  width: min(100%, 21rem);
+}
+
+.qs-dot {
+  aspect-ratio: 1;
+  border-radius: 9999px;
+  background: var(--fg);
+}
+
+.qs-dot--rojo {
+  background: var(--block);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html.js .qs-grafica .qs-dot {
+    transform: scale(0);
+    opacity: 0;
+    transition:
+      transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 0.4s ease;
+  }
+
+  html.js .qs-grafica.is-visible .qs-dot {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Animación de aparición al scrollear.                                */
+/* Solo se esconde contenido si hay JS y no hay reduced-motion:        */
+/* sin JS o con reduced-motion todo aparece en su estado final.        */
+/* ------------------------------------------------------------------ */
+@media (prefers-reduced-motion: no-preference) {
+  html.js .reveal {
+    opacity: 0;
+    transform: translateY(26px);
+    transition:
+      opacity 0.65s ease,
+      transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  html.js .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  html.js .reveal-d1 { transition-delay: 0.1s; }
+  html.js .reveal-d2 { transition-delay: 0.2s; }
+  html.js .reveal-d3 { transition-delay: 0.3s; }
+
+  /* Los paneles de servicios arman sus barras al entrar en pantalla */
+  html.js .panel-anim .bar {
+    transform: scaleY(0);
+    transform-origin: bottom;
+    transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  html.js .panel-anim .bar:nth-child(2) { transition-delay: 0.08s; }
+  html.js .panel-anim .bar:nth-child(3) { transition-delay: 0.16s; }
+  html.js .panel-anim .bar:nth-child(4) { transition-delay: 0.24s; }
+  html.js .panel-anim .bar:nth-child(5) { transition-delay: 0.32s; }
+  html.js .panel-anim .bar:nth-child(6) { transition-delay: 0.4s; }
+
+  html.js .is-visible .panel-anim .bar,
+  html.js .panel-anim.is-visible .bar {
+    transform: scaleY(1);
+  }
+
+  /* La barra de mayo del panel de portada cambia a rojo por clase */
+  html.js .js-hero-bar-may {
+    transition: background-color 0.4s ease;
+  }
+
+  /* Panel Full: las barras horizontales de rentabilidad crecen desde
+     la izquierda y la alerta entra al final */
+  html.js .panel-anim .canal {
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  html.js .panel-anim.is-visible .canal {
+    transform: scaleX(1);
+  }
+
+  html.js .panel-anim .panel-alerta {
+    opacity: 0;
+    transform: translateY(10px);
+    transition:
+      opacity 0.55s ease 0.45s,
+      transform 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.45s;
+  }
+
+  html.js .panel-anim.is-visible .panel-alerta {
+    opacity: 1;
+    transform: none;
+  }
+}

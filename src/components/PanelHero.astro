@@ -1,0 +1,69 @@
+---
+/**
+ * Panel de la portada, dentro de la laptop. Se arma con GSAP al cargar:
+ * las barras crecen, la de mayo se pone roja y la grilla de puntos se
+ * completa. Sin JS o con reduced-motion se ve directamente terminado.
+ */
+import { leyendaFicticia } from "../data/site";
+
+const barras = [
+  { mes: "Ene", alto: 52 },
+  { mes: "Feb", alto: 34 },
+  { mes: "Mar", alto: 60 },
+  { mes: "Abr", alto: 45 },
+  { mes: "May", alto: 96, hot: true },
+  { mes: "Jun", alto: 68 },
+];
+
+// 30 puntos: 22 normales y 8 destacados. Negro lo normal, rojo lo que importa.
+const puntos = Array.from({ length: 30 }, (_, i) => i >= 22);
+---
+
+<div class="panel">
+  <div class="mb-3 flex items-center justify-between gap-2">
+    <span class="panel-muted">Reporte · primer semestre</span>
+    <span class="pill pill-ficticio">{leyendaFicticia}</span>
+  </div>
+
+  <div class="grid grid-cols-2 gap-2">
+    <div class="panel-card">
+      <p class="panel-muted">Ventas por mes</p>
+      <p class="panel-num mt-1 text-xl leading-none">52 <span class="panel-muted text-[0.65rem]">/ promedio 6 meses</span></p>
+      <div class="bars mt-3" aria-hidden="true">
+        {
+          barras.map((b) => (
+            <div
+              class={`bar js-hero-bar ${b.hot ? "bar--hot js-hero-bar-may" : ""}`}
+              style={`height:${b.alto}%`}
+            />
+          ))
+        }
+      </div>
+      <div class="mt-1.5 flex gap-[7%]" aria-hidden="true">
+        {
+          barras.map((b) => (
+            <span class="panel-muted flex-1 text-center text-[0.55rem]">{b.mes}</span>
+          ))
+        }
+      </div>
+    </div>
+
+    <div class="panel-card flex flex-col">
+      <p class="panel-muted">Pedidos concretados</p>
+      <p class="panel-num mt-1 text-xl leading-none">
+        <span class="js-contador" data-valor="73" data-sufijo="%">73%</span>
+      </p>
+      <div
+        class="dots mt-3 flex-1 content-start"
+        style="grid-template-columns: repeat(6, 1fr);"
+        aria-hidden="true"
+      >
+        {
+          puntos.map((hot) => (
+            <span class={`dot js-hero-dot ${hot ? "dot--hot" : ""}`} />
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</div>

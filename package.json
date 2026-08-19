@@ -1,0 +1,19 @@
+{
+  "name": "nodo-web",
+  "version": "0.1.0",
+  "description": "Sitio web de NODO — análisis de datos para pymes de Uruguay",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@fontsource/space-grotesk": "^5.2.5",
+    "@tailwindcss/vite": "^4.1.11",
+    "astro": "^5.12.0",
+    "gsap": "^3.13.0",
+    "tailwindcss": "^4.1.11"
+  }
+}

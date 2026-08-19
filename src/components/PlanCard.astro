@@ -1,0 +1,63 @@
+---
+/**
+ * Tarjeta resumida de un plan para la página de inicio. Interactiva:
+ * levita y acentúa el borde al pasar el mouse. El Full se destaca: es
+ * el que carga los tres diferenciales exclusivos.
+ */
+import type { Plan } from "../data/planes";
+import Flecha from "./Flecha.astro";
+import { ruta } from "../lib/rutas";
+
+interface Props {
+  plan: Plan;
+  class?: string;
+}
+const { plan, class: className = "" } = Astro.props;
+---
+
+<article
+  class={`card-i relative flex flex-col gap-4 overflow-hidden rounded-3xl border bg-raised p-6 ${
+    plan.destacado ? "border-accent" : "border-line"
+  } ${className}`}
+>
+  <div class="plan-puntos" aria-hidden="true"></div>
+
+  <div class="relative flex items-start justify-between gap-2">
+    <h3 class="text-xl">{plan.nombre}</h3>
+    <span class="pill border border-line bg-raised text-muted">{plan.metafora}</span>
+  </div>
+
+  <p class="relative text-2xl text-accent">{plan.pregunta}</p>
+  <p class="relative text-sm leading-relaxed text-muted">{plan.resumen}</p>
+
+  <p class="relative mt-auto border-t border-line pt-4">
+    <span class="panel-num text-3xl">{plan.precio}</span>
+    <span class="block text-sm text-muted">{plan.modalidad}</span>
+  </p>
+
+  {
+    plan.exclusivos && (
+      <ul class="relative flex flex-col gap-2 border-t border-line pt-4 text-sm">
+        {plan.exclusivos.map((e) => (
+          <li class="flex items-center gap-2.5">
+            <span class="size-2 shrink-0 rounded-full bg-block" aria-hidden="true" />
+            {e.titulo}
+            <span class="pill ml-auto border border-line text-[0.65rem] text-muted">
+              solo en Full
+            </span>
+          </li>
+        ))}
+      </ul>
+    )
+  }
+
+  <a
+    href={ruta(`/servicios#${plan.id}`)}
+    class="flex items-center gap-1.5 text-sm text-accent"
+  >
+    Ver en detalle
+    <Flecha />
+    {/* extiende el área clickeable a toda la tarjeta */}
+    <span class="absolute inset-0" aria-hidden="true"></span>
+  </a>
+</article>

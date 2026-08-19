@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.astro/
+.DS_Store
+.env
+.env.*
+!.env.example
+
+# Contexto interno de marca: no va al repositorio público
+CLAUDE.md

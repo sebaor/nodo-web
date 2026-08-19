@@ -1,0 +1,30 @@
+---
+/**
+ * La MacBook dibujada con CSS, sin imágenes, siguiendo la estética de
+ * las MacBook Air reales: cuerpo de aluminio plateado, bisel negro con
+ * muesca y cámara, teclado oscuro sobre plata y trackpad.
+ *
+ * No se usan fotos de producto de Apple: tienen derechos de autor y el
+ * proyecto exige laptops livianas dibujadas con CSS/SVG.
+ *
+ * Aparece solo tres veces en el sitio: portada, servicios y (a futuro)
+ * la muestra. El slot es el panel simulado, siempre claro.
+ */
+interface Props {
+  class?: string;
+}
+const { class: className = "" } = Astro.props;
+---
+
+<div class={`laptop ${className}`}>
+  <div class="laptop-screen">
+    <div class="laptop-notch" aria-hidden="true"></div>
+    <div class="laptop-display">
+      <slot />
+    </div>
+  </div>
+  <div class="laptop-deck" aria-hidden="true">
+    <div class="laptop-keyboard"></div>
+    <div class="laptop-trackpad"></div>
+  </div>
+</div>

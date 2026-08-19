@@ -1,0 +1,48 @@
+---
+/**
+ * Acordeón de preguntas con <details>/<summary> nativo: accesible y sin
+ * JS. Todas arrancan cerradas (no llevan el atributo `open`), se puede
+ * abrir más de una a la vez, y el icono "+" pasa a "×" al abrir.
+ */
+interface Props {
+  items: {
+    pregunta: string;
+    respuesta?: string;
+    /** Respuesta con enlaces internos del sitio, redactada en los datos. */
+    respuestaHtml?: string;
+  }[];
+}
+const { items } = Astro.props;
+
+import { rutasEnHtml } from "../lib/rutas";
+---
+
+<div class="flex flex-col gap-3">
+  {
+    items.map((item) => (
+      <details class="group rounded-2xl border border-line bg-raised">
+        <summary class="flex cursor-pointer list-none items-center justify-between gap-4 rounded-2xl px-5 py-4 font-medium [&::-webkit-details-marker]:hidden">
+          {item.pregunta}
+          <svg
+            class="shrink-0 transition-transform duration-200 group-open:rotate-45"
+            width="14"
+            height="14"
+            viewBox="0 0 14 14"
+            fill="none"
+            aria-hidden="true"
+          >
+            <path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+          </svg>
+        </summary>
+        {item.respuestaHtml ? (
+          <p
+            class="px-5 pb-5 text-sm leading-relaxed text-muted [&_a]:text-accent [&_a]:underline"
+            set:html={rutasEnHtml(item.respuestaHtml)}
+          />
+        ) : (
+          <p class="px-5 pb-5 text-sm leading-relaxed text-muted">{item.respuesta}</p>
+        )}
+      </details>
+    ))
+  }
+</div>

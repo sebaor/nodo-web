@@ -1,0 +1,242 @@
+---
+import Base from "../layouts/Base.astro";
+import Boton from "../components/Boton.astro";
+import Flecha from "../components/Flecha.astro";
+import Laptop from "../components/Laptop.astro";
+import PanelHero from "../components/PanelHero.astro";
+import PlanCard from "../components/PlanCard.astro";
+import Acordeon from "../components/Acordeon.astro";
+import Agenda from "../components/Agenda.astro";
+import CtaFinal from "../components/CtaFinal.astro";
+import { site, waLink } from "../data/site";
+import {
+  portada,
+  teSuena,
+  queHacemos,
+  comoFunciona,
+  seguridadCorta,
+  quienesSomos,
+  dudas,
+  muestra,
+} from "../data/inicio";
+import { planes } from "../data/planes";
+import { ruta } from "../lib/rutas";
+
+// Grilla de "Quiénes somos": 8×5 puntos, los que importan en rojo,
+// agrupados abajo a la derecha como en el gráfico de la referencia.
+const rojosQs = new Set([29, 30, 31, 36, 37, 38, 39]);
+const puntosQs = Array.from({ length: 40 }, (_, i) => rojosQs.has(i));
+---
+
+<Base titulo="NODO — Análisis de datos para pymes de Uruguay">
+  {/* 1. Portada */}
+  <section class="js-hero relative overflow-hidden">
+    <div class="js-campo absolute inset-0" aria-hidden="true">
+      <div class="campo-puntos campo-deriva"></div>
+    </div>
+    <div
+      class="relative mx-auto grid max-w-6xl items-center gap-10 px-5 pb-14 pt-14 md:grid-cols-2 md:gap-12 md:pb-24 md:pt-20"
+    >
+      <div>
+        <span class="pill border border-line text-muted">{portada.etiqueta}</span>
+        <h1 class="mt-5 text-5xl leading-[1.05] tracking-tight md:text-6xl">
+          {portada.titulo}
+          <span class="text-accent">{portada.tituloAcento}</span>
+        </h1>
+        <p class="mt-5 max-w-md text-lg text-muted">{portada.bajada}</p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <Boton href="/#agenda">{portada.ctaAgendar}</Boton>
+          <Boton href={waLink} externo variante="outline" flecha={false}>
+            {portada.ctaWhatsapp}
+          </Boton>
+        </div>
+      </div>
+
+      <div class="js-hero-laptop mx-auto w-full max-w-md md:max-w-none">
+        <Laptop>
+          <PanelHero />
+        </Laptop>
+      </div>
+    </div>
+  </section>
+
+  {/* 2. ¿Te suena? */}
+  <section class="mx-auto max-w-6xl px-5 py-16 md:py-24">
+    <div class="reveal max-w-xl">
+      <h2 class="text-3xl md:text-4xl">{teSuena.titulo}</h2>
+      <p class="mt-3 text-muted">{teSuena.bajada}</p>
+    </div>
+    <div class="mt-9 grid gap-4 md:grid-cols-3">
+      {
+        teSuena.situaciones.map((s, i) => (
+          <article class={`card-i reveal reveal-d${i} rounded-3xl border border-line bg-raised p-6`}>
+            <span class="panel-num text-sm text-accent">0{i + 1}</span>
+            <h3 class="mt-2 text-xl">{s.titulo}</h3>
+            <p class="mt-2.5 text-sm leading-relaxed text-muted">{s.texto}</p>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  {/* 3. Qué hacemos: las tres preguntas */}
+  <section class="mx-auto max-w-6xl px-5 py-16 md:py-24">
+    <div class="reveal flex max-w-2xl flex-col gap-3">
+      <h2 class="text-3xl md:text-4xl">{queHacemos.titulo}</h2>
+      <p class="text-muted">{queHacemos.bajada}</p>
+    </div>
+    <ol class="mt-9 grid gap-4 md:grid-cols-3">
+      {
+        queHacemos.pasos.map((p, i) => (
+          <li class={`reveal reveal-d${i} flex flex-col gap-2.5 rounded-3xl border border-line bg-raised p-6`}>
+            <span class="pill w-fit border border-line text-muted">{p.metafora}</span>
+            <h3 class="text-2xl text-accent">{p.pregunta}</h3>
+            <p class="text-sm leading-relaxed text-muted">{p.texto}</p>
+          </li>
+        ))
+      }
+    </ol>
+    <a href={ruta("/servicios")} class="enlace-flecha reveal mt-7 flex w-fit items-center gap-1.5 text-accent">
+      {queHacemos.enlace}
+      <Flecha />
+    </a>
+  </section>
+
+  {/* 4. Cómo funciona */}
+  <section class="mx-auto max-w-6xl px-5 py-16 md:py-24">
+    <div class="reveal max-w-xl">
+      <h2 class="text-3xl md:text-4xl">{comoFunciona.titulo}</h2>
+      <p class="mt-3 text-muted">{comoFunciona.bajada}</p>
+    </div>
+    <ol class="mt-9 flex flex-col gap-0">
+      {
+        comoFunciona.pasos.map((p, i) => (
+          <li class="reveal flex gap-5 border-b border-line py-5 last:border-b-0 md:gap-8">
+            <span class="panel-num pt-0.5 text-sm text-accent">0{i + 1}</span>
+            <div>
+              <h3 class="text-lg">{p.titulo}</h3>
+              <p class="mt-1 max-w-xl text-sm leading-relaxed text-muted">{p.texto}</p>
+              {"enlace" in p && p.enlace && (
+                <a
+                  href={ruta(p.enlace.href)}
+                  class="enlace-flecha mt-2 flex w-fit items-center gap-1.5 text-sm text-accent"
+                >
+                  {p.enlace.texto}
+                  <Flecha />
+                </a>
+              )}
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </section>
+
+  {/* 5. Los planes */}
+  <section class="mx-auto max-w-6xl px-5 py-16 md:py-24">
+    <div class="reveal max-w-xl">
+      <h2 class="text-3xl md:text-4xl">Los planes</h2>
+      <p class="mt-3 text-muted">
+        Tres formas de trabajar, según la pregunta que quieras responder.
+      </p>
+    </div>
+    <div class="mt-9 grid items-stretch gap-4 md:grid-cols-3">
+      {planes.map((plan, i) => <PlanCard plan={plan} class={`reveal reveal-d${i}`} />)}
+    </div>
+  </section>
+
+  {
+    /* Sección de muestra: maquetada pero oculta hasta que exista el
+       reporte demo de Power BI (site.flags.mostrarMuestra). */
+    site.flags.mostrarMuestra && (
+      <section id="muestra" class="mx-auto max-w-6xl px-5 py-16 md:py-24">
+        <div class="reveal max-w-xl">
+          <h2 class="text-3xl md:text-4xl">{muestra.titulo}</h2>
+          <p class="mt-3 text-muted">{muestra.bajada}</p>
+        </div>
+        <div class="reveal mx-auto mt-9 max-w-2xl">
+          <Laptop>
+            <PanelHero />
+          </Laptop>
+        </div>
+        {muestra.enlace && (
+          <div class="reveal mt-7 text-center">
+            <Boton href={muestra.enlace} externo>
+              Abrir el reporte de muestra
+            </Boton>
+          </div>
+        )}
+      </section>
+    )
+  }
+
+  {/* 6. Seguridad y confidencialidad, versión corta */}
+  <section class="mx-auto max-w-6xl px-5 py-16 md:py-24">
+    <div class="reveal max-w-xl">
+      <h2 class="text-3xl md:text-4xl">{seguridadCorta.titulo}</h2>
+      <p class="mt-3 text-muted">{seguridadCorta.bajada}</p>
+    </div>
+    <div class="mt-9 grid gap-4 md:grid-cols-3">
+      {
+        seguridadCorta.puntos.map((p, i) => (
+          <article class={`reveal reveal-d${i} rounded-3xl border border-line bg-raised p-6`}>
+            <h3 class="text-lg">{p.titulo}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-muted">{p.texto}</p>
+          </article>
+        ))
+      }
+    </div>
+    <a href={ruta("/seguridad")} class="enlace-flecha reveal mt-7 flex w-fit items-center gap-1.5 text-accent">
+      {seguridadCorta.enlace}
+      <Flecha />
+    </a>
+  </section>
+
+  {/* 7. Quiénes somos: el texto acompañado de la grilla de puntos en
+      escala media, la marca dibujada como gráfico */}
+  <section class="mx-auto max-w-6xl px-5 py-16 md:py-24">
+    <div class="grid items-center gap-12 md:grid-cols-2">
+      <div class="reveal max-w-2xl">
+        <h2 class="text-3xl md:text-4xl">{quienesSomos.titulo}</h2>
+        {
+          quienesSomos.parrafos.map((p) => (
+            <p class="mt-4 leading-relaxed text-muted">{p}</p>
+          ))
+        }
+      </div>
+      <div class="qs-grafica mx-auto" aria-hidden="true">
+        {
+          puntosQs.map((rojo, i) => (
+            <span
+              class={`qs-dot ${rojo ? "qs-dot--rojo" : ""}`}
+              style={`transition-delay:${i * 18}ms`}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  {/* 8. Dudas */}
+  <section class="mx-auto max-w-3xl px-5 py-16 md:py-24">
+    <div class="reveal">
+      <h2 class="text-3xl md:text-4xl">{dudas.titulo}</h2>
+      <p class="mt-3 text-muted">{dudas.bajada}</p>
+    </div>
+    <div class="reveal mt-8">
+      <Acordeon items={dudas.preguntas} />
+    </div>
+  </section>
+
+  {/* 9. Agendá una reunión */}
+  <Agenda />
+
+  <CtaFinal
+    titulo="Tus números ya están. Falta mirarlos bien."
+    bajada="Una reunión corta y sin compromiso alcanza para saber si esto es para tu negocio."
+  />
+</Base>
+
+<script>
+  import "../scripts/hero";
+</script>
