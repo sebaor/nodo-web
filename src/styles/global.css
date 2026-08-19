@@ -252,96 +252,49 @@ h4 {
 }
 
 /* ------------------------------------------------------------------ */
-/* Laptop dibujada con CSS, sin imágenes: estética MacBook Air.        */
-/* Aluminio plateado, bisel negro con muesca, teclado oscuro.          */
+/* Laptop dibujada con CSS, sin imágenes                               */
 /* ------------------------------------------------------------------ */
 .laptop {
   width: 100%;
-  filter: drop-shadow(0 22px 34px rgb(0 0 0 / 0.3));
 }
 
-/* Pantalla: marco de aluminio fino, bisel negro adentro */
 .laptop-screen {
   position: relative;
-  background: #101113;
-  border: 3px solid #c9ccd1;
-  border-bottom: none;
-  border-radius: 1.05rem 1.05rem 0 0;
-  padding: 0.55rem 0.55rem 0.7rem;
-  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.06);
-}
-
-.laptop-display {
-  position: relative;
-  border-radius: 0.55rem;
-  overflow: hidden;
+  background: #0e0f11;
+  border: 2px solid #33363b;
+  border-bottom-width: 0;
+  border-radius: 1rem 1rem 0.35rem 0.35rem;
+  padding: 1.1rem 0.75rem 0.85rem;
 }
 
 .laptop-notch {
   position: absolute;
-  top: 0.55rem;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 18%;
-  height: 0.68rem;
-  background: #101113;
-  border-radius: 0 0 0.5rem 0.5rem;
-  z-index: 5;
-}
-
-.laptop-notch::after {
-  /* la cámara */
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: 42%;
-  transform: translate(-50%, -50%);
-  width: 0.2rem;
-  height: 0.2rem;
-  border-radius: 9999px;
-  background: #2f3237;
-}
-
-/* Cuerpo de aluminio con teclado y trackpad */
-.laptop-deck {
-  position: relative;
-  margin: 0 -4.5%;
-  padding: 0.4rem 4.5% 0.5rem;
-  background: linear-gradient(#f2f3f5, #d3d6da 18%, #b9bcc1 85%, #90939a);
-  border-radius: 0.25rem 0.25rem 0.95rem 0.95rem;
-}
-
-/* la hendidura para abrir la tapa */
-.laptop-deck::before {
-  content: "";
-  position: absolute;
   top: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 13%;
-  height: 0.32rem;
-  background: linear-gradient(#a9acb2, #c9ccd1);
-  border-radius: 0 0 0.6rem 0.6rem;
+  width: 22%;
+  height: 0.55rem;
+  background: #0e0f11;
+  border: 2px solid #33363b;
+  border-top-width: 0;
+  border-radius: 0 0 0.5rem 0.5rem;
 }
 
-.laptop-keyboard {
-  height: clamp(1.9rem, 5vw, 2.7rem);
-  border-radius: 0.3rem;
-  /* pocillo del teclado con filas y columnas de teclas oscuras */
-  background-color: #babdc2;
-  background-image:
-    repeating-linear-gradient(to bottom, transparent 0 18%, #babdc2 18% 25%),
-    repeating-linear-gradient(to right, #2b2d31 0 6.4%, #babdc2 6.4% 7.7%);
-  box-shadow: inset 0 1px 2px rgb(0 0 0 / 0.18);
+.laptop-base {
+  height: 0.6rem;
+  margin: 0 -3.5%;
+  background: linear-gradient(#41444a, #26282c);
+  border-radius: 0.2rem 0.2rem 0.8rem 0.8rem;
 }
 
-.laptop-trackpad {
-  width: 30%;
-  height: clamp(0.8rem, 2.1vw, 1.1rem);
-  margin: 0.4rem auto 0;
-  border-radius: 0.25rem;
-  background: linear-gradient(#cdd0d4, #bec1c6);
-  box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.1);
+.laptop-base::before {
+  content: "";
+  display: block;
+  margin: 0 auto;
+  width: 14%;
+  height: 0.28rem;
+  background: rgb(0 0 0 / 0.35);
+  border-radius: 0 0 0.5rem 0.5rem;
 }
 
 /* ------------------------------------------------------------------ */
