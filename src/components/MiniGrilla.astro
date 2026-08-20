@@ -1,0 +1,25 @@
+---
+/**
+ * Grilla de puntos chica para las tarjetas de plan. No es decoración:
+ * la cantidad de puntos rojos representa cuánto cubre cada plan, en el
+ * mismo lenguaje del branding (negro lo normal, rojo lo que importa).
+ * Entra escalonada cuando su contenedor .reveal se hace visible.
+ */
+interface Props {
+  rojos: number;
+  total?: number;
+  class?: string;
+}
+const { rojos, total = 12, class: className = "" } = Astro.props;
+
+// Los rojos se agrupan al final, como en la grilla grande.
+const puntos = Array.from({ length: total }, (_, i) => i >= total - rojos);
+---
+
+<div class={`mini-grilla ${className}`} aria-hidden="true">
+  {
+    puntos.map((rojo, i) => (
+      <span class={`mg-dot ${rojo ? "mg-dot--rojo" : ""}`} style={`--d:${i * 30}ms`} />
+    ))
+  }
+</div>

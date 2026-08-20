@@ -26,13 +26,26 @@ import { ruta } from "../lib/rutas";
 // agrupados abajo a la derecha como en el gráfico de la referencia.
 const rojosQs = new Set([29, 30, 31, 36, 37, 38, 39]);
 const puntosQs = Array.from({ length: 40 }, (_, i) => rojosQs.has(i));
+
+// Orden de entrada de la cascada: primero todos los claros, los rojos
+// al final. --d es el desfase de entrada; --rd el de la respiración.
+const ordenQs = new Map<number, number>();
+{
+  let pos = 0;
+  puntosQs.forEach((rojo, i) => {
+    if (!rojo) ordenQs.set(i, pos++);
+  });
+  puntosQs.forEach((rojo, i) => {
+    if (rojo) ordenQs.set(i, pos++);
+  });
+}
 ---
 
 <Base titulo="NODO — Análisis de datos para pymes y emprendimientos de Uruguay">
   {/* 1. Portada */}
   <section class="js-hero relative overflow-hidden">
     <div class="js-campo absolute inset-0" aria-hidden="true">
-      <div class="campo-puntos campo-deriva"></div>
+      <div class="campo-puntos campo-deriva js-pausable"></div>
     </div>
     <div
       class="relative mx-auto grid max-w-6xl items-center gap-10 px-5 pb-14 pt-14 md:grid-cols-2 md:gap-12 md:pb-24 md:pt-20"
@@ -207,12 +220,12 @@ const puntosQs = Array.from({ length: 40 }, (_, i) => rojosQs.has(i));
           ))
         }
       </div>
-      <div class="qs-grafica mx-auto" aria-hidden="true">
+      <div class="qs-grafica js-pausable mx-auto" aria-hidden="true">
         {
           puntosQs.map((rojo, i) => (
             <span
               class={`qs-dot ${rojo ? "qs-dot--rojo" : ""}`}
-              style={`transition-delay:${i * 18}ms`}
+              style={`--d:${(ordenQs.get(i) ?? 0) * 22}ms; --rd:${(-(i % 6) * 1.17).toFixed(2)}s`}
             />
           ))
         }

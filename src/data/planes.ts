@@ -14,6 +14,8 @@ export interface Plan {
   precio: string;
   modalidad: string;
   resumen: string;
+  /** Puntos rojos (de 12) en la grilla chica: cuánto cubre el plan. */
+  cobertura: number;
   incluye: string[];
   noIncluye: string[];
   exclusivos?: { titulo: string; detalle: string }[];
@@ -28,6 +30,7 @@ export const planes: Plan[] = [
     pregunta: "¿Qué pasó?",
     precio: "150 USD",
     modalidad: "pago único",
+    cobertura: 3,
     resumen:
       "Una imagen clara de tu negocio hasta hoy: qué se vendió, qué se gastó, qué quedó.",
     incluye: [
@@ -48,6 +51,7 @@ export const planes: Plan[] = [
     pregunta: "¿Cómo vengo?",
     precio: "300 USD",
     modalidad: "por mes",
+    cobertura: 7,
     resumen:
       "La evolución mes a mes: si venís mejor o peor que antes, y en qué exactamente.",
     incluye: [
@@ -66,6 +70,7 @@ export const planes: Plan[] = [
     pregunta: "¿Qué me conviene hacer?",
     precio: "500 USD",
     modalidad: "por mes · mínimo 3 meses",
+    cobertura: 11,
     resumen:
       "La información ordenada para tu próxima decisión. La decisión, siempre, es tuya.",
     incluye: ["Todo lo del plan Pro"],
