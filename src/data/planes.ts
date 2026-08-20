@@ -32,7 +32,7 @@ export const planes: Plan[] = [
       "Una imagen clara de tu negocio hasta hoy: qué se vendió, qué se gastó, qué quedó.",
     incluye: [
       "Orden y limpieza de tus planillas y datos",
-      "Un reporte con tus números clave, que podés filtrar y explorar por tu cuenta",
+      "Un reporte con los números de tu negocio, que podés filtrar y explorar por tu cuenta",
       "Reunión de entrega para recorrerlo con vos",
     ],
     noIncluye: [

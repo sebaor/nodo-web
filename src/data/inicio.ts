@@ -16,8 +16,8 @@ export const portada = {
   // La bajada también se corta en dos: el cierre va destacado con
   // peso medium y color de acento (nunca negrita).
   bajada:
-    "Unificamos la información que tu negocio ya genera —planillas, sistemas de facturación, plataformas de venta— y la convertimos en reportes claros. Presentamos los números;",
-  bajadaAcento: "las decisiones son tuyas.",
+    "Ordenamos y analizamos la información que tu negocio ya genera —planillas, facturación, plataformas de venta— para que la veas de forma clara en un solo lugar.",
+  bajadaAcento: "Las decisiones de tu negocio las tomás vos.",
   ctaAgendar: "Agendá una reunión",
   ctaWhatsapp: "Escribinos por WhatsApp",
 };
@@ -29,7 +29,7 @@ export const teSuena = {
     {
       titulo: "Tenés todo repartido en planillas",
       texto:
-        "Las ventas en un Excel, los gastos en otro, la facturación en el sistema. Nada habla con nada y armar un resumen lleva una tarde entera.",
+        "Las ventas en un Excel, los gastos en otro, la facturación en el sistema. Nada habla con nada, y armar un resumen completo te lleva horas.",
     },
     {
       titulo: "No sabés qué te deja margen",
@@ -78,7 +78,7 @@ export const comoFunciona = {
     {
       titulo: "Primer contacto",
       texto:
-        "Nos escribís por WhatsApp o agendás una reunión. Sin compromiso y sin que tengas que preparar nada.",
+        "Nos escribís por WhatsApp o agendás una reunión. Sin compromiso: no hace falta que prepares documentos ni que tengas nada ordenado, alcanza con lo que ya sabés de tu negocio.",
     },
     {
       titulo: "Formulario de inicio",
@@ -130,8 +130,8 @@ export const seguridadCorta = {
 export const quienesSomos = {
   titulo: "¿Quiénes somos?",
   parrafos: [
-    "NODO existe por algo simple: la mayoría de los negocios ya genera los datos que necesita para entenderse a sí mismo — en planillas, en el sistema de facturación, en la plataforma de venta — pero casi nunca los mira, porque ordenarlos lleva un tiempo que el que está al frente no tiene.",
-    "Nuestro trabajo es ese: tomar lo que ya tenés, ordenarlo y presentártelo claro. No prometemos resultados ni tomamos decisiones por vos: te mostramos tus números, porque el negocio lo conocés vos.",
+    "NODO existe por una razón concreta: ordenar datos lleva un tiempo que el que está al frente de un negocio no tiene. Los números están —en planillas, en el sistema de facturación, en la plataforma de venta—, pero mirarlos ordenados es un trabajo en sí mismo, y siempre queda para después.",
+    "Nuestro trabajo es ese: ordenar la información que ya está, analizarla y presentártela clara. No prometemos resultados ni tomamos decisiones por vos: te mostramos qué dicen tus números, porque el negocio lo conocés vos.",
   ],
 };
 
@@ -174,7 +174,7 @@ export const dudas = {
     {
       pregunta: "¿Necesito comprar Power BI o alguna licencia?",
       respuesta:
-        "Para ver tu reporte no necesitás comprar nada. Si el reporte lo van a mirar varias personas de tu equipo, puede hacer falta alguna licencia: te lo aclaramos en la reunión, antes de que decidas, para que no te sorprenda ningún costo después.",
+        "Para abrir tu reporte no necesitás comprar nada: te ayudamos a instalar Power BI Desktop, que es gratuito, y siempre te entregamos también una versión en PDF que se abre en cualquier dispositivo. Si querés que el reporte esté en línea para varias personas de tu equipo, ahí puede hacer falta alguna licencia: te lo aclaramos en la reunión, antes de que decidas, para que no te sorprenda ningún costo después.",
     },
     {
       pregunta: "¿Puedo cambiar de plan más adelante?",

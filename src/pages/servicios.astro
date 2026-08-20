@@ -10,6 +10,8 @@ import {
   intro,
   recorrido,
   detallePlanes,
+  queRecibis,
+  sinPowerBi,
   plazoYPagos,
   arranque,
   cierre,
@@ -74,6 +76,20 @@ const tipos = ["standard", "pro", "full"] as const;
                 ))}
               </ul>
 
+              <h4 class="mt-6 text-sm font-medium uppercase tracking-wide text-muted">
+                {queRecibis.titulo}
+              </h4>
+              <ul class="mt-2.5 flex flex-col gap-2 text-sm">
+                {[...queRecibis.comun, ...(queRecibis.porPlan[plan.id] ?? [])].map(
+                  (item) => (
+                    <li class="flex items-start gap-2.5">
+                      <span class="mt-1.5 size-1.5 shrink-0 rounded-full bg-accent" aria-hidden="true" />
+                      {item}
+                    </li>
+                  ),
+                )}
+              </ul>
+
               {plan.exclusivos && (
                 <div class="mt-5 rounded-2xl border border-accent p-5">
                   <h4 class="text-sm font-medium uppercase tracking-wide text-accent">
@@ -117,6 +133,18 @@ const tipos = ["standard", "pro", "full"] as const;
               </Laptop>
             </div>
           </article>
+        ))
+      }
+    </div>
+  </section>
+
+  {/* ¿Y si no tengo Power BI? — una sola vez en la página */}
+  <section class="mx-auto max-w-6xl px-5 py-12 md:py-16">
+    <div class="reveal max-w-3xl rounded-3xl border border-line bg-raised p-7">
+      <h2 class="text-2xl">{sinPowerBi.titulo}</h2>
+      {
+        sinPowerBi.parrafos.map((p) => (
+          <p class="mt-3 text-sm leading-relaxed text-muted">{p}</p>
         ))
       }
     </div>

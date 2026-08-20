@@ -48,7 +48,7 @@ export const herramientas = {
       herramientas: "Dropbox · Excel · Google Sheets",
       parrafos: [
         "Tus archivos se guardan en Dropbox, que cifra los datos con AES-256, y se trabajan en Excel o Google Sheets según cómo los tengas vos.",
-        "Los accesos están definidos: entra únicamente quien trabaja en tu caso. Se mantienen respaldos para no depender de una sola copia. No prometemos secreto absoluto — ningún servicio en la nube puede prometerlo con honestidad —, pero sí reglas claras sobre quién entra y qué se guarda.",
+        "Los accesos están definidos: entra únicamente quien trabaja en tu caso. Se mantienen respaldos para no depender de una sola copia. No prometemos secreto absoluto —ningún servicio en la nube puede prometerlo con honestidad—, pero sí reglas claras sobre quién entra y qué se guarda.",
       ],
     },
     {

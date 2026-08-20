@@ -29,6 +29,40 @@ export const detallePlanes = {
     "Los tres diferenciales que justifican el salto: no están en ningún otro plan.",
 };
 
+export const queRecibis = {
+  titulo: "Qué recibís",
+  // El formato concreto de entrega: común a los tres planes, más lo
+  // que agrega cada uno.
+  comun: [
+    "Tus planillas ordenadas y limpias",
+    "El reporte en archivo de Power BI",
+    "Una versión en PDF, para mirarla desde cualquier dispositivo",
+    "Todo en una carpeta de Dropbox compartida con vos",
+  ],
+  porPlan: {
+    standard: ["Reunión de entrega para recorrer el reporte juntos"],
+    pro: [
+      "Actualización mensual del reporte, avisada por los canales que acordemos, y reuniones de seguimiento para revisarlo con vos",
+    ],
+    full: [
+      "Lo mismo que Pro, más la actualización automática de los datos, sin que tengas que mandar planillas cada mes",
+    ],
+  } as Record<string, string[]>,
+};
+
+export const sinPowerBi = {
+  titulo: "¿Y si no tengo Power BI?",
+  // Texto exacto aprobado por el cliente: distingue entre abrir un
+  // archivo localmente y consultarlo en línea. No simplificar ni
+  // resumir: cualquier resumen que mezcle esas dos cosas lo vuelve
+  // inexacto.
+  parrafos: [
+    "No hace falta que compres nada. Con tu autorización te ayudamos a instalar Power BI Desktop, que es gratuito, para que puedas abrir el reporte en tu computadora.",
+    "Power BI Desktop funciona en Windows. Si trabajás en Mac o querés mirar el reporte desde el celular, para eso está la versión en PDF, que se abre en cualquier dispositivo sin instalar nada.",
+    "Y si más adelante querés que el reporte esté disponible en línea para varias personas de tu equipo, lo conversamos: ahí sí puede hacer falta alguna licencia, y te lo aclaramos antes de que decidas.",
+  ],
+};
+
 export const plazoYPagos = {
   titulo: "Plazo y formas de pago",
   plazoTitulo: "Plazo de entrega",
@@ -39,7 +73,7 @@ export const plazoYPagos = {
 export const arranque = {
   titulo: "¿Qué necesitamos para arrancar?",
   parrafos: [
-    "El primer paso es el formulario de inicio: un cuestionario corto para conocer tu negocio antes de la reunión. Qué vendés, dónde viven tus datos hoy — planillas, sistema de facturación, plataforma de venta —, y qué querés entender primero. Está acá en el sitio y lo podés completar ahora mismo, sin costo y sin que te comprometa a nada.",
+    "El primer paso es el formulario de inicio: un cuestionario corto para conocer tu negocio antes de la reunión. Qué vendés, dónde viven tus datos hoy —planillas, sistema de facturación, plataforma de venta—, y qué querés entender primero. Está acá en el sitio y lo podés completar ahora mismo, sin costo y sin que te comprometa a nada.",
     "No hace falta que tus datos estén prolijos ni completos: ordenarlos es parte del trabajo. Y no te pedimos acceso a nada hasta que firmemos el acuerdo de confidencialidad.",
   ],
   boton: "Completar el formulario de inicio",
