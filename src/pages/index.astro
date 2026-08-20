@@ -28,7 +28,7 @@ const rojosQs = new Set([29, 30, 31, 36, 37, 38, 39]);
 const puntosQs = Array.from({ length: 40 }, (_, i) => rojosQs.has(i));
 ---
 
-<Base titulo="NODO — Análisis de datos para pymes de Uruguay">
+<Base titulo="NODO — Análisis de datos para pymes y emprendimientos de Uruguay">
   {/* 1. Portada */}
   <section class="js-hero relative overflow-hidden">
     <div class="js-campo absolute inset-0" aria-hidden="true">
@@ -43,7 +43,10 @@ const puntosQs = Array.from({ length: 40 }, (_, i) => rojosQs.has(i));
           {portada.titulo}
           <span class="text-accent">{portada.tituloAcento}</span>
         </h1>
-        <p class="mt-5 max-w-md text-lg text-muted">{portada.bajada}</p>
+        <p class="mt-5 max-w-md text-lg text-muted">
+          {portada.bajada}
+          <span class="font-medium text-accent">{portada.bajadaAcento}</span>
+        </p>
         <div class="mt-8 flex flex-wrap gap-3">
           <Boton href="/#agenda">{portada.ctaAgendar}</Boton>
           <Boton href={waLink} externo variante="outline" flecha={false}>
@@ -132,10 +135,10 @@ const puntosQs = Array.from({ length: 40 }, (_, i) => rojosQs.has(i));
     </ol>
   </section>
 
-  {/* 5. Los planes */}
+  {/* 5. Nuestros planes */}
   <section class="mx-auto max-w-6xl px-5 py-16 md:py-24">
     <div class="reveal max-w-xl">
-      <h2 class="text-3xl md:text-4xl">Los planes</h2>
+      <h2 class="text-3xl md:text-4xl">Nuestros planes</h2>
       <p class="mt-3 text-muted">
         Tres formas de trabajar, según la pregunta que quieras responder.
       </p>

@@ -39,12 +39,12 @@ export const decision = {
 };
 
 export const herramientas = {
-  titulo: "Con qué herramientas trabajamos",
+  titulo: "¿Con qué herramientas trabajamos?",
   bajada:
     "Agrupadas por función, para que sepas qué hace cada una con tu información.",
   grupos: [
     {
-      titulo: "Dónde viven tus datos",
+      titulo: "¿Dónde viven tus datos?",
       herramientas: "Dropbox · Excel · Google Sheets",
       parrafos: [
         "Tus archivos se guardan en Dropbox, que cifra los datos con AES-256, y se trabajan en Excel o Google Sheets según cómo los tengas vos.",
@@ -52,7 +52,7 @@ export const herramientas = {
       ],
     },
     {
-      titulo: "Con qué los procesamos",
+      titulo: "¿Con qué los procesamos?",
       herramientas: "Power BI · Power Automate",
       parrafos: [
         "Power BI es la herramienta de Microsoft con la que armamos tus reportes: ahí tus datos se ordenan y se convierten en algo que podés filtrar y explorar por tu cuenta.",

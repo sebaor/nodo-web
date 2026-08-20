@@ -6,7 +6,7 @@
 export const site = {
   nombre: "NODO",
   descripcion:
-    "Tomamos los datos que ya tenés y los convertimos en reportes claros de tus números clave. Análisis de datos para pymes y emprendimientos de Uruguay.",
+    "Análisis de datos para pymes y emprendimientos de Uruguay. Unificamos la información que tu negocio ya genera y la convertimos en reportes claros. Presentamos los números; las decisiones son tuyas.",
   ubicacion: "Uruguay",
 
   whatsapp: {

@@ -38,6 +38,6 @@ export const formulario = {
 };
 
 export const ubicacion = {
-  titulo: "Dónde estamos",
+  titulo: "¿Dónde estamos?",
   texto: "Trabajamos desde Uruguay, con reuniones por videollamada o presenciales según el caso.",
 };

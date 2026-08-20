@@ -169,7 +169,7 @@ export const secciones: Seccion[] = [
   },
   {
     numero: "03",
-    titulo: "Qué querés lograr",
+    titulo: "¿Qué querés lograr?",
     preguntas: [
       {
         numero: "11",
@@ -274,7 +274,7 @@ export const estados = {
   enviar: "Enviar el formulario",
   exitoTitulo: "Recibimos tu formulario",
   exitoTexto:
-    "Recibimos tu formulario. Vamos a revisarlo y te escribimos para coordinar una reunión informativa, sin costo ni compromiso.",
+    "Vamos a revisarlo y te escribimos para coordinar una reunión informativa, sin costo ni compromiso.",
   errorTexto:
     "No pudimos enviar el formulario: puede ser un problema de conexión o del servicio de envío. Lo que escribiste sigue acá, no se perdió. Probá de nuevo en un momento, o si preferís escribinos directo:",
   faltanRespuestas: "Falta responder alguna pregunta obligatoria.",

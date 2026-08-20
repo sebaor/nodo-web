@@ -4,7 +4,7 @@
  * levita y acentúa el borde al pasar el mouse. El Full se destaca: es
  * el que carga los tres diferenciales exclusivos.
  */
-import type { Plan } from "../data/planes";
+import { etiquetaExclusivos, type Plan } from "../data/planes";
 import Flecha from "./Flecha.astro";
 import { ruta } from "../lib/rutas";
 
@@ -37,17 +37,19 @@ const { plan, class: className = "" } = Astro.props;
 
   {
     plan.exclusivos && (
-      <ul class="relative flex flex-col gap-2 border-t border-line pt-4 text-sm">
-        {plan.exclusivos.map((e) => (
-          <li class="flex items-center gap-2.5">
-            <span class="size-2 shrink-0 rounded-full bg-block" aria-hidden="true" />
-            {e.titulo}
-            <span class="pill ml-auto border border-line text-[0.65rem] text-muted">
-              solo en Full
-            </span>
-          </li>
-        ))}
-      </ul>
+      <div class="relative border-t border-line pt-4">
+        <h4 class="text-xs font-medium uppercase tracking-wide text-accent">
+          {etiquetaExclusivos}
+        </h4>
+        <ul class="mt-2.5 flex flex-col gap-2 text-sm">
+          {plan.exclusivos.map((e) => (
+            <li class="flex items-center gap-2.5">
+              <span class="size-2 shrink-0 rounded-full bg-block" aria-hidden="true" />
+              {e.titulo}
+            </li>
+          ))}
+        </ul>
+      </div>
     )
   }
 

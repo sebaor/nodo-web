@@ -37,7 +37,7 @@ export const plazoYPagos = {
 };
 
 export const arranque = {
-  titulo: "Qué necesitamos para arrancar",
+  titulo: "¿Qué necesitamos para arrancar?",
   parrafos: [
     "El primer paso es el formulario de inicio: un cuestionario corto para conocer tu negocio antes de la reunión. Qué vendés, dónde viven tus datos hoy — planillas, sistema de facturación, plataforma de venta —, y qué querés entender primero. Está acá en el sitio y lo podés completar ahora mismo, sin costo y sin que te comprometa a nada.",
     "No hace falta que tus datos estén prolijos ni completos: ordenarlos es parte del trabajo. Y no te pedimos acceso a nada hasta que firmemos el acuerdo de confidencialidad.",

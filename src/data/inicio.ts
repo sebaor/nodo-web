@@ -8,13 +8,16 @@
  */
 
 export const portada = {
-  etiqueta: "Análisis de datos para pymes en Uruguay",
+  etiqueta: "Análisis de datos para pymes y emprendimientos de Uruguay",
   // El título se corta en dos para poder acentuar la palabra final
   // con el color de acento del modo activo.
   titulo: "Mirá lo que",
   tituloAcento: "importa.",
+  // La bajada también se corta en dos: el cierre va destacado con
+  // peso medium y color de acento (nunca negrita).
   bajada:
-    "Tomamos las planillas y los datos que tu negocio ya genera y los convertimos en reportes claros de tus números clave. Nosotros te mostramos la información; las decisiones las tomás vos.",
+    "Unificamos la información que tu negocio ya genera —planillas, sistemas de facturación, plataformas de venta— y la convertimos en reportes claros. Presentamos los números;",
+  bajadaAcento: "las decisiones son tuyas.",
   ctaAgendar: "Agendá una reunión",
   ctaWhatsapp: "Escribinos por WhatsApp",
 };
@@ -29,9 +32,9 @@ export const teSuena = {
         "Las ventas en un Excel, los gastos en otro, la facturación en el sistema. Nada habla con nada y armar un resumen lleva una tarde entera.",
     },
     {
-      titulo: "No sabés qué te deja plata",
+      titulo: "No sabés qué te deja margen",
       texto:
-        "Vendés todos los días, pero no está claro qué producto rinde de verdad y cuál apenas empata.",
+        "Vendés todos los días, pero no está claro qué producto rinde de verdad y cuál apenas cubre sus costos.",
     },
     {
       titulo: "Decidís a ojo",
@@ -42,7 +45,7 @@ export const teSuena = {
 };
 
 export const queHacemos = {
-  titulo: "Qué hacemos",
+  titulo: "¿Qué hacemos?",
   bajada:
     "Un recorrido en tres preguntas. Cada plan responde una más profunda que la anterior.",
   enlace: "Ver los planes en detalle",
@@ -69,7 +72,7 @@ export const queHacemos = {
 };
 
 export const comoFunciona = {
-  titulo: "Cómo funciona",
+  titulo: "¿Cómo funciona?",
   bajada: "Un proceso con método, del primer mensaje a la entrega.",
   pasos: [
     {
@@ -125,10 +128,10 @@ export const seguridadCorta = {
 };
 
 export const quienesSomos = {
-  titulo: "Quiénes somos",
+  titulo: "¿Quiénes somos?",
   parrafos: [
     "NODO existe por algo simple: la mayoría de los negocios ya genera los datos que necesita para entenderse a sí mismo — en planillas, en el sistema de facturación, en la plataforma de venta — pero casi nunca los mira, porque ordenarlos lleva un tiempo que el que está al frente no tiene.",
-    "Nuestro trabajo es ese: tomar lo que ya tenés, ordenarlo y presentártelo claro. Sin humo. No prometemos resultados ni tomamos decisiones por vos: te mostramos tus números, porque el negocio lo conocés vos.",
+    "Nuestro trabajo es ese: tomar lo que ya tenés, ordenarlo y presentártelo claro. No prometemos resultados ni tomamos decisiones por vos: te mostramos tus números, porque el negocio lo conocés vos.",
   ],
 };
 

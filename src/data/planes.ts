@@ -91,6 +91,9 @@ export const planes: Plan[] = [
   },
 ];
 
+/** Marca única para el grupo de diferenciales en la tarjeta del Full. */
+export const etiquetaExclusivos = "Exclusivo del plan Full";
+
 export const formasDePago = [
   "Transferencia bancaria",
   "Mercado Pago",
