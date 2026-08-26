@@ -80,6 +80,30 @@ export const arranque = {
   botonHref: "/formulario",
 };
 
+export const formatos = {
+  titulo: "¿Con qué formatos trabajamos?",
+  intro:
+    "Trabajamos con los archivos que ya usás, sin que tengas que cambiar de sistema ni migrar nada:",
+  lista: [
+    "Planillas de Excel y Google Sheets",
+    "Archivos de texto, CSV, XML y JSON",
+    "Bases de Access",
+    "Carpetas completas de archivos",
+    "Bibliotecas de SharePoint",
+    // El matiz del PDF no se modifica: una tabla bien estructurada se
+    // puede extraer; un PDF escaneado o de formato libre, muchas veces
+    // no. Ponerlo al mismo nivel que Excel sería prometer de más.
+    "Tablas dentro de PDF, según cómo esté armado el archivo",
+  ],
+  notaOtros:
+    "Si tus datos están en otro formato, contanos igual: casi siempre hay forma de leerlos.",
+  // Esta línea no se modifica: recibir un archivo exportado y
+  // conectarse en vivo al sistema del cliente son trabajos distintos,
+  // con costos distintos.
+  notaConexiones:
+    "Cuando hace falta conectarse en vivo a un sistema que ya usás, lo vemos caso por caso y lo cotizamos aparte.",
+};
+
 export const cierre = {
   titulo: "¿Empezamos por la foto?",
   bajada:

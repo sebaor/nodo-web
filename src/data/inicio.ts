@@ -145,6 +145,11 @@ export const dudas = {
         "No. Con las planillas que ya usás alcanza para empezar. Parte de nuestro trabajo es ordenarlas.",
     },
     {
+      pregunta: "¿Y si mis datos están en otro formato?",
+      respuesta:
+        "Trabajamos con Excel, Google Sheets, CSV, archivos de texto, XML, JSON, Access, carpetas de archivos y bibliotecas de SharePoint, entre otros. Si lo tuyo no está en esa lista, contanos igual: casi siempre hay una forma de leerlo. Y si hace falta conectarse en vivo a un sistema que ya usás, lo vemos caso por caso.",
+    },
+    {
       pregunta: "¿Sirve para un negocio chico?",
       respuesta:
         "Sí. No hace falta un volumen mínimo de ventas ni un sistema especial. Si hay registros, hay algo para ordenar y entender.",

@@ -15,6 +15,7 @@ import {
   sinPowerBi,
   plazoYPagos,
   arranque,
+  formatos,
   cierre,
 } from "../data/servicios";
 
@@ -197,6 +198,32 @@ const tipos = ["standard", "pro", "full"] as const;
       <div class="mt-6">
         <Boton href={arranque.botonHref}>{arranque.boton}</Boton>
       </div>
+    </div>
+  </section>
+
+  {/* ¿Con qué formatos trabajamos? — contesta la objeción "¿pueden
+      trabajar con lo que yo tengo?"; por eso va acá y no en Seguridad */}
+  <section class="mx-auto max-w-6xl px-5 py-12 md:py-16">
+    <div class="reveal max-w-2xl">
+      <h2 class="text-3xl md:text-4xl">{formatos.titulo}</h2>
+      <p class="mt-4 leading-relaxed text-muted">{formatos.intro}</p>
+    </div>
+    <ul class="mt-6 grid max-w-2xl gap-x-8 gap-y-2.5 text-sm md:grid-cols-2">
+      {
+        formatos.lista.map((item, i) => (
+          <li
+            class="reveal flex items-start gap-2.5"
+            style={`transition-delay:${i * 60}ms`}
+          >
+            <span class="mt-1.5 size-1.5 shrink-0 rounded-full bg-accent" aria-hidden="true" />
+            {item}
+          </li>
+        ))
+      }
+    </ul>
+    <div class="reveal mt-6 max-w-2xl">
+      <p class="text-sm leading-relaxed text-muted">{formatos.notaOtros}</p>
+      <p class="mt-2 text-sm leading-relaxed text-muted">{formatos.notaConexiones}</p>
     </div>
   </section>
 
