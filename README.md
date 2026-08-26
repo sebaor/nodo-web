@@ -43,7 +43,7 @@ los formularios muestran el estado de error con las vías alternativas
 **GitHub Pages**, automático con cada push a `main` mediante
 `.github/workflows/deploy.yml`:
 
-- El sitio se publica en `https://sebaor.github.io/nodo-web/`.
+- El sitio se publica en `https://nodouy.github.io/nodo-web/`.
 - El workflow compila con `BASE_PATH=/nodo-web` (el sitio vive bajo esa
   sub-ruta). Los enlaces internos pasan todos por `src/lib/rutas.ts`, que
   antepone la base; en desarrollo local la base es `/` y no cambia nada.
