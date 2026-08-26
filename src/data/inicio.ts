@@ -6,6 +6,7 @@
  * texto final según el documento del proyecto. Lo que hay acá es un
  * borrador que respeta las reglas de comunicación.
  */
+import { site } from "./site";
 
 export const portada = {
   etiqueta: "Análisis de datos para pymes y emprendimientos de Uruguay",
@@ -178,8 +179,12 @@ export const dudas = {
     },
     {
       pregunta: "¿Necesito comprar Power BI o alguna licencia?",
-      respuesta:
-        "Para abrir tu reporte no necesitás comprar nada: te ayudamos a instalar Power BI Desktop, que es gratuito, y siempre te entregamos también una versión en PDF que se abre en cualquier dispositivo. Si querés que el reporte esté en línea para varias personas de tu equipo, ahí puede hacer falta alguna licencia: te lo aclaramos en la reunión, antes de que decidas, para que no te sorprenda ningún costo después.",
+      // ADVERTENCIA: la versión con acceso en línea incluido se activa
+      // junto con el recuadro de Servicios, vía site.flags.accesoEnLinea,
+      // y solo cuando el circuito esté probado de punta a punta.
+      respuesta: site.flags.accesoEnLinea
+        ? "No necesitás comprar nada. En el Standard te entregamos el reporte en PDF, y si querés explorarlo por tu cuenta te ayudamos a instalar Power BI Desktop, que es gratuito. En Pro y Full el acceso en línea viene incluido y la licencia la cubrimos nosotros: entrás desde el navegador, en cualquier dispositivo. Si querés sumar accesos para otras personas de tu equipo, cada uno cuesta 14 USD por mes, y te lo aclaramos antes de que decidas."
+        : "Para abrir tu reporte no necesitás comprar nada: te ayudamos a instalar Power BI Desktop, que es gratuito, y siempre te entregamos también una versión en PDF que se abre en cualquier dispositivo. Si querés que el reporte esté en línea para varias personas de tu equipo, ahí puede hacer falta alguna licencia: te lo aclaramos en la reunión, antes de que decidas, para que no te sorprenda ningún costo después.",
     },
     {
       pregunta: "¿Puedo cambiar de plan más adelante?",
@@ -208,8 +213,13 @@ export const agenda = {
   titulo: "Agendá una reunión",
   bajada:
     "Una charla corta y sin compromiso para conocer tu negocio y contarte cómo trabajamos.",
-  fallback:
-    "Estamos habilitando la agenda en línea. Mientras tanto, escribinos y coordinamos un horario.",
+  // En Inicio no va el calendario embebido (pesa y se comporta mal en
+  // celular): van dos botones, uno a Contacto y el de WhatsApp.
+  botonAgenda: "Elegí día y horario",
+  botonWhatsapp: "Escribinos por WhatsApp",
+  // En celular el recuadro embebido de Contacto se reemplaza por este
+  // botón que abre la página de reservas en una pestaña nueva.
+  botonCelular: "Abrir la agenda para elegir horario",
 };
 
 export const muestra = {

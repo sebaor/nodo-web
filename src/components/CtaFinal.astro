@@ -26,13 +26,14 @@ const { titulo, bajada } = Astro.props;
       {bajada && <p class="mx-auto mt-3 max-w-md text-block-contrast/85">{bajada}</p>}
       <div class="mt-7 flex flex-wrap justify-center gap-3">
         {/* Boton ya aplica la base del sitio a las rutas internas */}
-        <Boton href="/#agenda" class="bg-white! text-ink!">
+        <Boton href="/contacto#agenda" brillo class="btn-brillo-tinta bg-white! text-ink!">
           Agendá una reunión
         </Boton>
         <Boton
           href={waLink}
           externo
           variante="outline"
+          brillo
           class="border-white/40! text-white! hover:border-white!"
         >
           Escribinos por WhatsApp

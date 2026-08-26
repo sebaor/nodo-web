@@ -61,12 +61,17 @@ const { titulo, descripcion = site.descripcion } = Astro.props;
               if (entrada.isIntersecting) {
                 entrada.target.classList.add("is-visible");
                 io.unobserve(entrada.target);
-                // La grilla de "Quiénes somos" empieza a respirar
-                // cuando su cascada de entrada terminó.
+                // Las grillas de puntos empiezan a respirar cuando su
+                // cascada de entrada terminó.
                 if (entrada.target.classList.contains("qs-grafica")) {
                   const objetivo = entrada.target;
-                  setTimeout(() => objetivo.classList.add("qs-viva"), 1500);
+                  setTimeout(() => objetivo.classList.add("qs-viva"), 1900);
                 }
+                entrada.target
+                  .querySelectorAll(".mini-grilla")
+                  .forEach((grilla) =>
+                    setTimeout(() => grilla.classList.add("mg-viva"), 1200),
+                  );
               }
             }
           },

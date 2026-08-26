@@ -27,18 +27,17 @@ import { ruta } from "../lib/rutas";
 const rojosQs = new Set([29, 30, 31, 36, 37, 38, 39]);
 const puntosQs = Array.from({ length: 40 }, (_, i) => rojosQs.has(i));
 
-// Orden de entrada de la cascada: primero todos los claros, los rojos
-// al final. --d es el desfase de entrada; --rd el de la respiración.
-const ordenQs = new Map<number, number>();
-{
-  let pos = 0;
-  puntosQs.forEach((rojo, i) => {
-    if (!rojo) ordenQs.set(i, pos++);
-  });
-  puntosQs.forEach((rojo, i) => {
-    if (rojo) ordenQs.set(i, pos++);
-  });
-}
+// Cascada diagonal desde arriba a la izquierda: el desfase crece con
+// fila + columna. Los claros entran primero; los rojos, todos después
+// del último claro, como remate. --d es el desfase de entrada; --rd el
+// de la respiración.
+const colsQs = 8;
+const diagQs = (i: number) => Math.floor(i / colsQs) + (i % colsQs);
+const maxDiagClaros = Math.max(
+  ...puntosQs.map((rojo, i) => (rojo ? 0 : diagQs(i))),
+);
+const desfaseQs = (i: number) =>
+  puntosQs[i] ? (maxDiagClaros + 3 + diagQs(i)) * 55 : diagQs(i) * 55;
 ---
 
 <Base titulo="NODO — Análisis de datos para pymes y emprendimientos de Uruguay">
@@ -61,8 +60,8 @@ const ordenQs = new Map<number, number>();
           <span class="font-medium text-accent">{portada.bajadaAcento}</span>
         </p>
         <div class="mt-8 flex flex-wrap gap-3">
-          <Boton href="/#agenda">{portada.ctaAgendar}</Boton>
-          <Boton href={waLink} externo variante="outline" flecha={false}>
+          <Boton href="/contacto#agenda" brillo>{portada.ctaAgendar}</Boton>
+          <Boton href={waLink} externo variante="outline" flecha={false} brillo>
             {portada.ctaWhatsapp}
           </Boton>
         </div>
@@ -225,7 +224,7 @@ const ordenQs = new Map<number, number>();
           puntosQs.map((rojo, i) => (
             <span
               class={`qs-dot ${rojo ? "qs-dot--rojo" : ""}`}
-              style={`--d:${(ordenQs.get(i) ?? 0) * 22}ms; --rd:${(-(i % 6) * 1.17).toFixed(2)}s`}
+              style={`--d:${desfaseQs(i)}ms; --rd:${(-(i % 6) * 1.17).toFixed(2)}s`}
             />
           ))
         }

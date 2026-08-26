@@ -12,6 +12,8 @@ interface Props {
   flecha?: boolean;
   class?: string;
   externo?: boolean;
+  /** Destello periódico: solo para los botones de acción principal. */
+  brillo?: boolean;
 }
 
 const {
@@ -20,12 +22,15 @@ const {
   flecha = true,
   class: className = "",
   externo = false,
+  brillo = false,
 } = Astro.props;
 ---
 
 <a
   href={ruta(href)}
-  class={`btn ${variante === "solid" ? "btn-solid" : "btn-outline"} ${className}`}
+  class={`btn ${variante === "solid" ? "btn-solid" : "btn-outline"} ${
+    brillo ? "btn-brillo js-pausable" : ""
+  } ${className}`}
   {...externo ? { target: "_blank", rel: "noopener" } : {}}
 >
   <slot />

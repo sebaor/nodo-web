@@ -1,12 +1,23 @@
 ---
 /**
- * Sección de agenda. Si todavía no existe la página de reservas de
- * Google Calendar (site.calendarioUrl vacío), muestra la alternativa
- * honesta: WhatsApp y correo.
+ * Sección de agenda, en dos modos:
+ *
+ * - Sin calendario (Inicio): título, bajada y dos botones — uno a la
+ *   página de Contacto y el de WhatsApp. El calendario embebido no va
+ *   en Inicio: es un elemento visual de Google ajeno al sistema de
+ *   diseño, pesa, y en celular se comporta mal.
+ * - Con calendario (Contacto): el recuadro embebido en escritorio; en
+ *   celular, un botón que abre la página de reservas en una pestaña
+ *   nueva, porque el embebido queda demasiado alto en pantallas chicas.
  */
-import { site, waLink, mailtoLink } from "../data/site";
+import { site, waLink } from "../data/site";
 import { agenda } from "../data/inicio";
 import Boton from "./Boton.astro";
+
+interface Props {
+  conCalendario?: boolean;
+}
+const { conCalendario = false } = Astro.props;
 ---
 
 <section id="agenda" class="mx-auto max-w-6xl scroll-mt-24 px-5 py-16 md:py-24">
@@ -16,26 +27,33 @@ import Boton from "./Boton.astro";
   </div>
 
   {
-    site.calendarioUrl ? (
-      <div class="reveal mt-8 overflow-hidden rounded-3xl border border-line bg-raised">
-        <iframe
-          src={site.calendarioUrl}
-          title="Calendario para agendar una reunión con NODO"
-          class="h-[38rem] w-full"
-          loading="lazy"
-        />
-      </div>
-    ) : (
-      <div class="reveal mx-auto mt-8 flex max-w-xl flex-col items-center gap-4 rounded-3xl border border-line bg-raised p-8 text-center">
-        <p class="text-muted">{agenda.fallback}</p>
-        <div class="flex flex-wrap justify-center gap-3">
-          <Boton href={waLink} externo>
-            Escribinos por WhatsApp
+    conCalendario && site.calendarioUrl ? (
+      <>
+        <div class="reveal mt-8 hidden overflow-hidden rounded-3xl border border-line bg-raised md:block">
+          <iframe
+            src={site.calendarioUrl}
+            title="Calendario para agendar una reunión con NODO"
+            class="h-[38rem] w-full"
+            loading="lazy"
+          />
+        </div>
+        <div class="reveal mt-8 flex flex-col items-center gap-3 md:hidden">
+          <Boton href={site.calendarioCorto} externo brillo>
+            {agenda.botonCelular}
           </Boton>
-          <Boton href={mailtoLink} variante="outline" flecha={false}>
-            {site.correo.direccion}
+          <Boton href={waLink} externo variante="outline" flecha={false}>
+            {agenda.botonWhatsapp}
           </Boton>
         </div>
+      </>
+    ) : (
+      <div class="reveal mt-8 flex flex-wrap justify-center gap-3">
+        <Boton href="/contacto#agenda" brillo>
+          {agenda.botonAgenda}
+        </Boton>
+        <Boton href={waLink} externo variante="outline" flecha={false} brillo>
+          {agenda.botonWhatsapp}
+        </Boton>
       </div>
     )
   }

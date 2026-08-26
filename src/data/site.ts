@@ -28,6 +28,9 @@ export const site = {
   // https://calendar.app.google/VBVarnvb1PSMFekZ9
   calendarioUrl:
     "https://calendar.google.com/appointments/schedules/AcZssZ0uUrcUDR4_qvKaOrniXEkeO3arthGDd0efe6ZeTfvfmUutTwHGUHSdtqyh4sXqzwliulLSUuoX?gv=true",
+  // Enlace corto de la misma agenda, para abrir en pestaña nueva desde
+  // celular (el recuadro embebido se comporta mal en pantallas chicas).
+  calendarioCorto: "https://calendar.app.google/VBVarnvb1PSMFekZ9",
 
   redes: {
     instagram: "https://www.instagram.com/nodo_uy_/",
@@ -38,6 +41,12 @@ export const site = {
     // La sección de muestra queda maquetada pero oculta hasta que
     // exista el reporte demo de Power BI.
     mostrarMuestra: false,
+    // ADVERTENCIA: activa el bloque "acceso en línea incluido en Pro y
+    // Full" (recuadro de Power BI en Servicios + respuesta de Dudas).
+    // Depende de dominio propio, cuenta de trabajo de Microsoft y
+    // licencias Pro contratadas. NO activar hasta que el responsable
+    // del sitio confirme que el circuito completo funciona.
+    accesoEnLinea: false,
   },
 } as const;
 

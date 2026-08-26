@@ -3,7 +3,11 @@
  * Grilla de puntos chica para las tarjetas de plan. No es decoración:
  * la cantidad de puntos rojos representa cuánto cubre cada plan, en el
  * mismo lenguaje del branding (negro lo normal, rojo lo que importa).
- * Entra escalonada cuando su contenedor .reveal se hace visible.
+ *
+ * Entrada en cascada diagonal desde arriba a la izquierda cuando su
+ * contenedor .reveal se hace visible; los rojos llegan al final, como
+ * remate. Después respira muy levemente (.mg-viva, ver global.css),
+ * pausada fuera de pantalla.
  */
 interface Props {
   rojos: number;
@@ -12,14 +16,30 @@ interface Props {
 }
 const { rojos, total = 12, class: className = "" } = Astro.props;
 
+const columnas = 6;
 // Los rojos se agrupan al final, como en la grilla grande.
 const puntos = Array.from({ length: total }, (_, i) => i >= total - rojos);
+
+// Cascada diagonal: el desfase crece con fila + columna. Los claros
+// entran primero; los rojos, todos después del último claro.
+const diagonal = (i: number) => Math.floor(i / columnas) + (i % columnas);
+const maxDiagClaros = Math.max(
+  0,
+  ...puntos.map((rojo, i) => (rojo ? 0 : diagonal(i))),
+);
+const desfase = (i: number) =>
+  puntos[i]
+    ? (maxDiagClaros + 2 + diagonal(i)) * 45
+    : diagonal(i) * 45;
 ---
 
-<div class={`mini-grilla ${className}`} aria-hidden="true">
+<div class={`mini-grilla js-pausable ${className}`} aria-hidden="true">
   {
     puntos.map((rojo, i) => (
-      <span class={`mg-dot ${rojo ? "mg-dot--rojo" : ""}`} style={`--d:${i * 30}ms`} />
+      <span
+        class={`mg-dot ${rojo ? "mg-dot--rojo" : ""}`}
+        style={`--d:${desfase(i)}ms; --rd:${(-(i % 5) * 1.6).toFixed(1)}s`}
+      />
     ))
   }
 </div>

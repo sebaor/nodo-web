@@ -149,6 +149,62 @@ h4 {
   transform: translate(2px, -2px);
 }
 
+/* ------------------------------------------------------------------ */
+/* Brillo de los botones de acción principal: un destello que cruza el */
+/* botón cada ~5,5 s. Solo transform; el fondo y el texto no cambian.  */
+/* En hover se detiene (la persona ya lo encontró), fuera de pantalla  */
+/* se pausa, y prefers-reduced-motion lo elimina por completo.         */
+/* ------------------------------------------------------------------ */
+.btn-brillo {
+  position: relative;
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .btn-brillo::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 55%;
+    pointer-events: none;
+    background: linear-gradient(
+      105deg,
+      transparent 0%,
+      var(--brillo, rgb(255 255 255 / 0.35)) 50%,
+      transparent 100%
+    );
+    transform: translateX(-130%) skewX(-18deg);
+    animation: btn-brillo 5.5s linear infinite;
+  }
+
+  .btn-brillo:hover::after {
+    animation: none;
+  }
+
+  .btn-brillo.fuera::after {
+    animation-play-state: paused;
+  }
+}
+
+@keyframes btn-brillo {
+  0% {
+    transform: translateX(-130%) skewX(-18deg);
+  }
+  14.5% {
+    transform: translateX(320%) skewX(-18deg);
+  }
+  100% {
+    transform: translateX(320%) skewX(-18deg);
+  }
+}
+
+/* Variante para botones de fondo claro: destello oscuro sutil */
+.btn-brillo-tinta {
+  --brillo: rgb(31 33 36 / 0.12);
+}
+
 .pill {
   display: inline-flex;
   align-items: center;
@@ -432,6 +488,28 @@ input[type="checkbox"] {
 
   html.js .is-visible .mg-dot {
     transform: scale(1);
+  }
+
+  /* Respiración de las grillas chicas: todavía más leve que la grande.
+     Arranca cuando terminó la entrada (.mg-viva) y se pausa fuera de
+     pantalla (.fuera). */
+  html.js .mini-grilla.mg-viva .mg-dot {
+    animation: mg-respira 8s ease-in-out infinite;
+    animation-delay: var(--rd, 0s);
+  }
+
+  html.js .mini-grilla.fuera .mg-dot {
+    animation-play-state: paused;
+  }
+}
+
+@keyframes mg-respira {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.04);
   }
 }
 
